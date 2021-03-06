@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lists</title>
+</head>
+<body>
+  <a href="/">home</a>
+  <h2> {{listName}} </h2>
+  <ul>
+  {% autoescape off %}
+  {% for task, complete, taskID in tasks %}
+    <li>
+      <form>      
+        {% if complete == 0 %}
+          <span>{{task}}</span>
+          <input type='hidden' name='id' value='{{listID}}'>
+          <input type='hidden' name='task' value='{{taskID}}'>
+          <input type='hidden' name='complete' value='1'>
+          <button type='submit'>Mark as done</button>
+        {% else %}
+          <span style="text-decoration: line-through" >{{task}}</span>
+          <input type='hidden' name='id' value='{{listID}}'>
+          <input type='hidden' name='task' value='{{taskID}}'>
+          <input type='hidden' name='complete' value='0'>
+          <button type='submit'>Mark as uncomplete</button>
+        {% endif %}
+      </form>  
+    </li>
+  {% endfor %}
+  {% endautoescape %}
+  </ul>
+  <div id='taskList'>
+
+  </div>
+
+  <form action='/list' method="GET">
+    <h4>Create new task</h4>
+    <input type='hidden' name='id' value='{{listID}}'>
+    <label>
+      Task name: <br><input type='text' name='newTask' >
+    </label>
+    <br>
+    <button type='submit'> Create new task </button>
+  </form>
+</body>
+</html>

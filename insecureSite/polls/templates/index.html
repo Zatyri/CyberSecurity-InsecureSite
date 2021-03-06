@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home view</title>
+</head>
+<body>
+  <h1>Welcome {{user.get_username}}</h1>
+    <h4>View task lists</h4>
+  
+    {% for list, id in lists %}
+      <a href='list?id={{id}}' % {{id}} >{{list}}</a></br>
+    {% endfor r%}
+  </ul>
+  
+  <form action='' method="GET">
+    <h4>Create new list</h4>
+    <label>
+      List name: <br><input type='text' name='newList' >
+    </label>
+    <br>
+    <button type='submit'> Create new list </button>
+  </form>
+</body>
+</html>
